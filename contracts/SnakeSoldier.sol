@@ -7,6 +7,10 @@ import "@rmrk-team/evm-contracts/contracts/RMRK/extension/RMRKRoyalties.sol";
 import "@rmrk-team/evm-contracts/contracts/RMRK/utils/RMRKCollectionMetadata.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
+error MintOverMax();
+error MintUnderpriced();
+error MintZero();
+error SaleNotOpen();
 error MaxPhaseReached();
 error NextPhasePriceMustBeEqualOrHigher();
 
@@ -18,6 +22,13 @@ contract SnakeSoldier is
 {
     using Strings for uint256;
 
+    event Minted(
+        Rank rank,
+        address indexed buyer,
+        uint256 indexed from,
+        uint256 indexed to
+    );
+
     enum Rank {
         Soldier,
         Commander,
@@ -28,6 +39,17 @@ contract SnakeSoldier is
     uint256 private constant _MAX_SUPPLY_PER_PHASE_COMMANDERS = 45; // A maximum possible of 45*4=180
     uint256 private constant _MAX_SUPPLY_PER_PHASE_GENERALS = 5; // A maximum possible of 5*4=20
     uint256 private constant _MAX_PHASES = 4;
+
+    uint64 private constant _ASSET_ID_SOLDIER_EGG = 1;
+    uint64 private constant _ASSET_ID_COMMANDER_EGG = 2;
+    uint64 private constant _ASSET_ID_GENERAL_EGG = 3;
+
+    uint256 private constant _GENERALS_OFFSET = 0; // No offset.
+    uint256 private constant _COMMANDERS_OFFSET =
+        _MAX_SUPPLY_PER_PHASE_GENERALS * _MAX_PHASES; // Starts after generals.
+    uint256 private constant _SOLDIERS_OFFSET =
+        (_MAX_SUPPLY_PER_PHASE_COMMANDERS + _MAX_SUPPLY_PER_PHASE_GENERALS) *
+            _MAX_PHASES; // After generals and Commanders.
 
     uint256 private _pricePerSoldier;
     uint256 private _pricePerCommander;
@@ -184,5 +206,57 @@ contract SnakeSoldier is
 
     function lockPhases() external onlyOwner {
         _phasesLocked = true;
+    }
+
+    function _rankOffset(Rank rank) private pure returns (uint256) {
+        if (rank == Rank.Soldier) return _SOLDIERS_OFFSET;
+        else if (rank == Rank.Commander) return _COMMANDERS_OFFSET;
+        else return _GENERALS_OFFSET;
+    }
+
+    function pricePerMint(Rank rank) public view returns (uint256) {
+        if (rank == Rank.Soldier) return _pricePerSoldier;
+        else if (rank == Rank.Commander) return _pricePerCommander;
+        else return _pricePerGeneral;
+    }
+
+    function mint(address to, uint256 numToMint, Rank rank) external payable {
+        if (_phase == 0) revert SaleNotOpen();
+        if (numToMint == uint256(0)) revert MintZero();
+        if (numToMint + totalSupply(rank) > maxSupply(rank))
+            revert MintOverMax();
+
+        uint256 mintPriceRequired = numToMint * pricePerMint(rank);
+        if (mintPriceRequired != msg.value) revert MintUnderpriced();
+
+        uint256 nextToken = _totalSupply[rank] + 1 + _rankOffset(rank);
+        unchecked {
+            _totalSupply[rank] += numToMint;
+        }
+        uint256 totalSupplyOffset = nextToken + numToMint;
+        uint64 assetId;
+
+        for (uint256 i = nextToken; i < totalSupplyOffset; ) {
+            _safeMint(to, i, "");
+            if (i > _SOLDIERS_OFFSET) {
+                assetId = _ASSET_ID_SOLDIER_EGG;
+            } else if (i > _COMMANDERS_OFFSET) {
+                assetId = _ASSET_ID_COMMANDER_EGG;
+            } else {
+                assetId = _ASSET_ID_GENERAL_EGG;
+            }
+            _addAssetToToken(i, assetId, 0);
+            _acceptAsset(i, 0, assetId);
+            unchecked {
+                ++i;
+            }
+        }
+
+        emit Minted(rank, to, nextToken, totalSupplyOffset - 1);
+    }
+
+    function withdrawRaised(address to, uint256 amount) external onlyOwner {
+        (bool success, ) = to.call{value: amount}("");
+        require(success, "Transfer failed.");
     }
 }

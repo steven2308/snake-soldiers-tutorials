@@ -8,6 +8,7 @@ import "@rmrk-team/evm-contracts/contracts/RMRK/utils/RMRKCollectionMetadata.sol
 import "@openzeppelin/contracts/utils/Strings.sol";
 
 error ElementAlreadyRevealed();
+error MaxGiftsPerPhaseReached();
 error MintOverMax();
 error MintUnderpriced();
 error MintZero();
@@ -77,15 +78,19 @@ contract SnakeSoldier is
     string private _defaultTokenUri;
     uint256 private _totalAssets;
     mapping(uint64 => uint256) private _isTokenAssetEnumerated;
+    uint256 private _totalGifts;
+    uint256 private immutable _maxGiftsPerPhase;
 
     constructor(
         string memory collectionMetadata_,
-        string memory defaultTokenUri
+        string memory defaultTokenUri,
+        uint256 maxGiftsPerPhase_
     )
         RMRKCollectionMetadata(collectionMetadata_)
         RMRKRoyalties(_msgSender(), 500) // 500 -> 5%
         RMRKEquippable("Snake Soldiers", "SS")
     {
+        _maxGiftsPerPhase = maxGiftsPerPhase_;
         _defaultTokenUri = defaultTokenUri;
     }
 
@@ -236,14 +241,21 @@ contract SnakeSoldier is
     }
 
     function mint(address to, uint256 numToMint, Rank rank) external payable {
+        _mintChecks(numToMint, rank);
+        uint256 mintPriceRequired = numToMint * pricePerMint(rank);
+        if (mintPriceRequired != msg.value) revert MintUnderpriced();
+
+        _innerMint(to, numToMint, rank);
+    }
+
+    function _mintChecks(uint256 numToMint, Rank rank) private view {
         if (_phase == 0) revert SaleNotOpen();
         if (numToMint == uint256(0)) revert MintZero();
         if (numToMint + totalSupply(rank) > maxSupply(rank))
             revert MintOverMax();
+    }
 
-        uint256 mintPriceRequired = numToMint * pricePerMint(rank);
-        if (mintPriceRequired != msg.value) revert MintUnderpriced();
-
+    function _innerMint(address to, uint256 numToMint, Rank rank) private {
         uint256 nextToken = _totalSupply[rank] + 1 + _rankOffset(rank);
         unchecked {
             _totalSupply[rank] += numToMint;

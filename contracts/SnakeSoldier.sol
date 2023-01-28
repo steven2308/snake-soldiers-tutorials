@@ -7,6 +7,7 @@ import "@rmrk-team/evm-contracts/contracts/RMRK/extension/RMRKRoyalties.sol";
 import "@rmrk-team/evm-contracts/contracts/RMRK/utils/RMRKCollectionMetadata.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
+error ElementAlreadyRevealed();
 error MintOverMax();
 error MintUnderpriced();
 error MintZero();
@@ -43,6 +44,19 @@ contract SnakeSoldier is
     uint64 private constant _ASSET_ID_SOLDIER_EGG = 1;
     uint64 private constant _ASSET_ID_COMMANDER_EGG = 2;
     uint64 private constant _ASSET_ID_GENERAL_EGG = 3;
+    uint64 private constant _ASSET_ID_SOLDIER_EGG_FIRE = 4;
+    uint64 private constant _ASSET_ID_SOLDIER_EGG_EARTH = 5;
+    uint64 private constant _ASSET_ID_SOLDIER_EGG_WATER = 6;
+    uint64 private constant _ASSET_ID_SOLDIER_EGG_AIR = 7;
+    uint64 private constant _ASSET_ID_COMMANDER_EGG_FIRE = 8;
+    uint64 private constant _ASSET_ID_COMMANDER_EGG_EARTH = 9;
+    uint64 private constant _ASSET_ID_COMMANDER_EGG_WATER = 10;
+    uint64 private constant _ASSET_ID_COMMANDER_EGG_AIR = 11;
+    uint64 private constant _ASSET_ID_GENERAL_EGG_FIRE = 12;
+    uint64 private constant _ASSET_ID_GENERAL_EGG_EARTH = 13;
+    uint64 private constant _ASSET_ID_GENERAL_EGG_WATER = 14;
+    uint64 private constant _ASSET_ID_GENERAL_EGG_AIR = 15;
+    uint64 private constant _ASSET_ID_SNAKE = 16;
 
     uint256 private constant _GENERALS_OFFSET = 0; // No offset.
     uint256 private constant _COMMANDERS_OFFSET =
@@ -55,6 +69,7 @@ contract SnakeSoldier is
     uint256 private _pricePerCommander;
     uint256 private _pricePerGeneral;
 
+    mapping(uint256 => uint256) private _elementRevealed;
     mapping(Rank => uint256) private _totalSupply;
     uint256 private _phase;
     bool private _phasesLocked;
@@ -258,5 +273,28 @@ contract SnakeSoldier is
     function withdrawRaised(address to, uint256 amount) external onlyOwner {
         (bool success, ) = to.call{value: amount}("");
         require(success, "Transfer failed.");
+    }
+
+    function revealElement(
+        uint256 tokenId
+    ) external onlyApprovedForAssetsOrOwner(tokenId) {
+        if (_elementRevealed[tokenId] == 1) revert ElementAlreadyRevealed();
+        _elementRevealed[tokenId] = 1;
+        uint64 newAssetId;
+        uint64 oldAssetId;
+
+        // The "+ tokenId % 4" part, sets the asset for the right element
+        if (tokenId > _SOLDIERS_OFFSET) {
+            oldAssetId = _ASSET_ID_SOLDIER_EGG;
+            newAssetId = _ASSET_ID_SOLDIER_EGG_FIRE + uint64(tokenId % 4);
+        } else if (tokenId > _COMMANDERS_OFFSET) {
+            oldAssetId = _ASSET_ID_COMMANDER_EGG;
+            newAssetId = _ASSET_ID_COMMANDER_EGG_FIRE + uint64(tokenId % 4);
+        } else {
+            oldAssetId = _ASSET_ID_GENERAL_EGG;
+            newAssetId = _ASSET_ID_GENERAL_EGG_FIRE + uint64(tokenId % 4);
+        }
+        _addAssetToToken(tokenId, newAssetId, oldAssetId);
+        _acceptAsset(tokenId, 0, newAssetId);
     }
 }

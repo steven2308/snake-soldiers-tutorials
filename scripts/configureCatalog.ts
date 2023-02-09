@@ -10,7 +10,9 @@ import { SnakeCatalog } from '../typechain-types';
 
 async function configureCatalog(
   catalog: SnakeCatalog,
-  snakeSoldiersAddress: string,
+  elementGemAddress: string,
+  skillGemAddress: string,
+  factionGemAddress: string,
 ): Promise<void> {
   console.log('Configuring catalog.');
 
@@ -20,7 +22,7 @@ async function configureCatalog(
       part: {
         itemType: 1,
         z: 10,
-        equippable: [snakeSoldiersAddress],
+        equippable: [elementGemAddress],
         metadataURI: SLOT_ELEMENT_GEM_METADATA_URI,
       },
     },
@@ -29,7 +31,7 @@ async function configureCatalog(
       part: {
         itemType: 1,
         z: 10,
-        equippable: [snakeSoldiersAddress],
+        equippable: [skillGemAddress],
         metadataURI: SLOT_SKILL_GEM_METADATA_URI,
       },
     },
@@ -38,7 +40,7 @@ async function configureCatalog(
       part: {
         itemType: 1,
         z: 10,
-        equippable: [snakeSoldiersAddress],
+        equippable: [factionGemAddress],
         metadataURI: SLOT_FACTION_GEM_METADATA_URI,
       },
     },

@@ -179,6 +179,10 @@ contract SnakeSoldier is
         else delete _isTokenAssetEnumerated[assetId];
     }
 
+    function totalAssets() public view returns (uint256) {
+        return _totalAssets;
+    }
+
     function totalSupply(Rank rank) public view returns (uint256) {
         return _totalSupply[rank];
     }

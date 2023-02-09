@@ -8,6 +8,8 @@ import {
   SnakeSoldier,
 } from '../typechain-types';
 import * as C from './constants';
+import addMainAssets from './addMainAssets';
+import configureCatalog from './configureCatalog';
 
 async function main() {
   await deployContracts();
@@ -76,6 +78,9 @@ async function deployContracts(): Promise<void> {
   console.log(`Faction Gem deployed to ${factionGem.address}.`);
   console.log(`Skill Gem deployed to ${skillGem.address}.`);
   console.log(`Snake Catalog deployed to ${snakeCatalog.address}.`);
+
+  await addMainAssets(snakeSoldier, elementGem, factionGem, skillGem);
+  await configureCatalog(snakeCatalog, elementGem.address, skillGem.address, factionGem.address);
 
   await run('verify:verify', {
     address: snakeSoldier.address,

@@ -60,19 +60,13 @@ abstract contract BaseGem is
     }
 
     function addAssetEntry(
-        uint64 id,
-        uint64 equippableGroupId,
-        address baseAddress,
-        string memory metadataURI,
-        uint64[] calldata partIds
-    ) external onlyOwnerOrContributor {
-        _addAssetEntry(
-            id,
-            equippableGroupId,
-            baseAddress,
-            metadataURI,
-            partIds
-        );
+        string memory metadataURI
+    ) public virtual onlyOwnerOrContributor returns (uint256) {
+        unchecked {
+            _totalAssets += 1;
+        }
+        _addAssetEntry(uint64(_totalAssets), metadataURI);
+        return _totalAssets;
     }
 
     function addEquippableAssetEntry(

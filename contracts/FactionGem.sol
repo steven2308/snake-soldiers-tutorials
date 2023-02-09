@@ -15,7 +15,7 @@ contract FactionGem is RMRKSoulbound, BaseGem {
 
     uint256 private constant _COMMANDERS_OFFSET = 20;
 
-    address private immutable _passportAddress;
+    address private _passportAddress;
 
     constructor(
         string memory collectionMetadata_,
@@ -33,6 +33,10 @@ contract FactionGem is RMRKSoulbound, BaseGem {
             maxSupply_
         )
     {
+        setPassportAddress(passportAddress);
+    }
+
+    function setPassportAddress(address passportAddress) public onlyOwner {
         _passportAddress = passportAddress;
     }
 

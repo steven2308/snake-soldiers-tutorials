@@ -10,7 +10,7 @@ contract SerpenTerraPassport is ERC20, ERC20Burnable, Ownable {
     address private _factionGem;
 
     constructor(address factionGem) ERC20("SerpenTerra Passport", "STP") {
-        _factionGem = factionGem;
+        setFactionGem(factionGem);
     }
 
     function mint(address to, uint256 amount) public onlyOwner {
@@ -21,5 +21,9 @@ contract SerpenTerraPassport is ERC20, ERC20Burnable, Ownable {
         if (_msgSender() != _factionGem) revert("Not Faction Gem");
 
         _burn(owner, amount);
+    }
+
+    function setFactionGem(address factionGem) public onlyOwner {
+        _factionGem = factionGem;
     }
 }

@@ -1,14 +1,16 @@
 import * as CC from './catalogConstants';
+import { bn } from './constants';
 import { SnakeSoldier } from '../typechain-types';
+import { BigNumber } from 'ethers';
 
 const SLOT_PARTS = [CC.SLOT_ELEMENT_GEM_ID, CC.SLOT_SKILL_GEM_ID, CC.SLOT_FACTION_GEM_ID];
 
 async function addFullAssetToSnake(
   snakes: SnakeSoldier,
   metadataURI: string,
-  snakeId: number,
+  snakeId: number | BigNumber,
   catalogAddress: string,
-  fixed_parts: number[],
+  fixed_parts: BigNumber[],
 ): Promise<void> {
   console.log('Configuring catalog.');
 
@@ -57,4 +59,4 @@ async function addFullAssetToAllSnakes(
   ]);
 }
 
-export default addFullAssetToAllSnakes;
+export default addFullAssetToSnake;

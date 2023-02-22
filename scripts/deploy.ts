@@ -11,12 +11,17 @@ import * as C from './constants';
 import addMainAssets from './addMainAssets';
 import configureCatalog from './configureCatalog';
 
-async function main() {
-  await deployContracts();
-}
-
-async function deployContracts(): Promise<void> {
-  console.log('Deploying smart contracts');
+async function deployContracts(fromTesting: boolean): Promise<{
+  snakeSoldiers: SnakeSoldier;
+  elementGem: ElementGem;
+  factionGem: FactionGem;
+  skillGem: SkillGem;
+  passport: SerpenTerraPassport;
+  catalog: SnakeCatalog;
+}> {
+  if (!fromTesting) {
+    console.log('Deploying smart contracts');
+  }
   const snakeSoldierFactory = await ethers.getContractFactory('SnakeSoldier');
   const elementGemFactory = await ethers.getContractFactory('ElementGem');
   const factionGemFactory = await ethers.getContractFactory('FactionGem');
@@ -24,7 +29,7 @@ async function deployContracts(): Promise<void> {
   const serpenTerraPassportFactory = await ethers.getContractFactory('SerpenTerraPassport');
   const snakeCatalogFactory = await ethers.getContractFactory('SnakeCatalog');
 
-  const snakeSoldier = <SnakeSoldier>(
+  const snakeSoldiers = <SnakeSoldier>(
     await snakeSoldierFactory.deploy(
       C.SNAKE_METADATA_URI,
       C.SNAKE_DEFAULT_URI,
@@ -38,7 +43,7 @@ async function deployContracts(): Promise<void> {
     await elementGemFactory.deploy(
       C.ELEMENT_GEM_METADATA,
       C.ELEMENT_GEM_DEFAULT_URI,
-      snakeSoldier.address,
+      snakeSoldiers.address,
       C.MAX_SUPPLY_FOR_GEMS,
     )
   );
@@ -46,7 +51,7 @@ async function deployContracts(): Promise<void> {
     await skillGemFactory.deploy(
       C.SKILL_GEM_METADATA,
       C.SKILL_GEM_DEFAULT_URI,
-      snakeSoldier.address,
+      snakeSoldiers.address,
       C.MAX_SUPPLY_FOR_GEMS,
     )
   );
@@ -54,41 +59,51 @@ async function deployContracts(): Promise<void> {
     await factionGemFactory.deploy(
       C.FACTION_GEM_METADATA,
       C.FACTION_GEM_DEFAULT_URI,
-      snakeSoldier.address,
+      snakeSoldiers.address,
       C.MAX_SUPPLY_FOR_GEMS,
       passport.address,
     )
   );
-  const snakeCatalog = <SnakeCatalog>(
+  const catalog = <SnakeCatalog>(
     await snakeCatalogFactory.deploy(C.CATALOG_METADATA_URI, C.CATALOG_TYPE)
   );
 
-  await snakeSoldier.deployed();
+  await snakeSoldiers.deployed();
   await passport.deployed();
   await elementGem.deployed();
   await factionGem.deployed();
   await skillGem.deployed();
-  await snakeCatalog.deployed();
+  await catalog.deployed();
 
   await passport.setFactionGem(factionGem.address);
 
-  console.log(`Snake Soldier deployed to ${snakeSoldier.address}.`);
-  console.log(`SerpenTerra Passport deployed to ${passport.address}.`);
-  console.log(`Element Gem deployed to ${elementGem.address}.`);
-  console.log(`Faction Gem deployed to ${factionGem.address}.`);
-  console.log(`Skill Gem deployed to ${skillGem.address}.`);
-  console.log(`Snake Catalog deployed to ${snakeCatalog.address}.`);
+  if (!fromTesting) {
+    console.log(`Snake Soldier deployed to ${snakeSoldiers.address}.`);
+    console.log(`SerpenTerra Passport deployed to ${passport.address}.`);
+    console.log(`Element Gem deployed to ${elementGem.address}.`);
+    console.log(`Faction Gem deployed to ${factionGem.address}.`);
+    console.log(`Skill Gem deployed to ${skillGem.address}.`);
+    console.log(`Snake Catalog deployed to ${catalog.address}.`);
+  }
 
-  await addMainAssets(snakeSoldier, elementGem, factionGem, skillGem);
-  await configureCatalog(snakeCatalog, elementGem.address, skillGem.address, factionGem.address);
+  await addMainAssets(snakeSoldiers, elementGem, factionGem, skillGem);
+  await configureCatalog(catalog, elementGem.address, skillGem.address, factionGem.address);
 
-  await run('verify:verify', {
-    address: snakeSoldier.address,
-    constructorArguments: [C.SNAKE_METADATA_URI, C.SNAKE_DEFAULT_URI, C.MAX_GIFTS_PER_PHASE],
-  });
+  if (!fromTesting) {
+    await run('verify:verify', {
+      address: snakeSoldiers.address,
+      constructorArguments: [C.SNAKE_METADATA_URI, C.SNAKE_DEFAULT_URI, C.MAX_GIFTS_PER_PHASE],
+    });
+  }
+
+  return {
+    snakeSoldiers,
+    passport,
+    elementGem,
+    factionGem,
+    skillGem,
+    catalog,
+  };
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+export default deployContracts;

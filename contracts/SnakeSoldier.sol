@@ -252,6 +252,16 @@ contract SnakeSoldier is
         _innerMint(to, numToMint, rank);
     }
 
+    function giftMint(address to, Rank rank) external onlyOwner {
+        _mintChecks(1, rank);
+
+        if (_totalGifts == _maxGiftsPerPhase * _phase)
+            revert MaxGiftsPerPhaseReached();
+        _totalGifts += 1;
+
+        _innerMint(to, 1, rank);
+    }
+
     function _mintChecks(uint256 numToMint, Rank rank) private view {
         if (_phase == 0) revert SaleNotOpen();
         if (numToMint == uint256(0)) revert MintZero();

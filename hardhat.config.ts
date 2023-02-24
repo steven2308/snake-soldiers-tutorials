@@ -46,6 +46,14 @@ const config: HardhatUserConfig = {
       moonbeam: process.env.MOONBEAM_MOONSCAN_APIKEY || '', // Moonbeam Moonscan API Key
     },
   },
+  gasReporter: {
+    enabled: process.env.REPORT_GAS !== undefined,
+    currency: 'USD',
+    coinmarketcap: process.env.COIN_MARKET_CAP_KEY || '', // Get one here: https://coinmarketcap.com/api/pricing/
+    token: 'GLMR',
+    gasPriceApi: 'https://api-moonbeam.moonscan.io/api?module=proxy&action=eth_gasPrice',
+    // More options: https://github.com/cgewecke/eth-gas-reporter/blob/master/README.md#token-and-gaspriceapi-options-example
+  },
 };
 
 export default config;

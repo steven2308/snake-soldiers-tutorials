@@ -45,7 +45,7 @@ const Z_INDEX_SKILL_GEM_SLOT = 43;
 const Z_INDEX_FACTION_GEM_SLOT = 43;
 
 const CATALOG_METADATA_URI = `${BASE_URI_CATALOG}/Catalog.json`;
-const CATALOG_TYPE = 'img/png';
+const CATALOG_TYPE = 'image/png';
 const SLOT_BACKGROUND_METADATA_URI = `${BASE_URI_CATALOG}/slots/background.json`;
 const SLOT_ELEMENT_GEM_METADATA_URI = `${BASE_URI_CATALOG}/slots/elementGem.json`;
 const SLOT_SKILL_GEM_METADATA_URI = `${BASE_URI_CATALOG}/slots/skillGem.json`;

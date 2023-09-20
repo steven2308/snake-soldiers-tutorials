@@ -1,0 +1,682 @@
+{
+  "frames_general": {
+    "file": "frames/general.png",
+    "id": 3
+  },
+  "frames_soldier": {
+    "file": "frames/soldier.png",
+    "id": 4
+  },
+  "frames_commander": {
+    "file": "frames/commander.png",
+    "id": 2
+  },
+  "frames_background": {
+    "file": "frames/background.png",
+    "id": 1
+  },
+  "parts_air_eye": {
+    "file": "parts/air/eye.png",
+    "id": 37
+  },
+  "parts_black_eye": {
+    "file": "parts/black/eye.png",
+    "id": 45
+  },
+  "parts_earth_eye": {
+    "file": "parts/earth/eye.png",
+    "id": 54
+  },
+  "parts_fire_eye": {
+    "file": "parts/fire/eye.png",
+    "id": 63
+  },
+  "parts_ghost_eye": {
+    "file": "parts/ghost/eye.png",
+    "id": 71
+  },
+  "parts_green_eye": {
+    "file": "parts/green/eye.png",
+    "id": 79
+  },
+  "parts_ice_eye": {
+    "file": "parts/ice/eye.png",
+    "id": 87
+  },
+  "parts_invisible_eye": {
+    "file": "parts/invisible/eye.png",
+    "id": 95
+  },
+  "parts_magma_eye": {
+    "file": "parts/magma/eye.png",
+    "id": 105
+  },
+  "parts_mecha_eye": {
+    "file": "parts/mecha/eye.png",
+    "id": 113
+  },
+  "parts_mecha_jaw": {
+    "file": "parts/mecha/jaw.png",
+    "id": 117
+  },
+  "parts_purple_eye": {
+    "file": "parts/purple/eye.png",
+    "id": 122
+  },
+  "parts_red_eye": {
+    "file": "parts/red/eye.png",
+    "id": 130
+  },
+  "parts_rock_eye": {
+    "file": "parts/rock/eye.png",
+    "id": 139
+  },
+  "parts_skeleton_eye": {
+    "file": "parts/skeleton/eye.png",
+    "id": 147
+  },
+  "parts_skeleton_rib": {
+    "file": "parts/skeleton/rib.png",
+    "id": 152
+  },
+  "parts_water_eye": {
+    "file": "parts/water/eye.png",
+    "id": 157
+  },
+  "parts_zombie_eye": {
+    "file": "parts/zombie/eye.png",
+    "id": 165
+  },
+  "parts_air_body": {
+    "file": "parts/air/body.png",
+    "id": 35
+  },
+  "parts_air_head": {
+    "file": "parts/air/head.png",
+    "id": 40
+  },
+  "parts_black_body": {
+    "file": "parts/black/body.png",
+    "id": 43
+  },
+  "parts_black_head": {
+    "file": "parts/black/head.png",
+    "id": 48
+  },
+  "parts_earth_body": {
+    "file": "parts/earth/body.png",
+    "id": 51
+  },
+  "parts_earth_head": {
+    "file": "parts/earth/head.png",
+    "id": 57
+  },
+  "parts_fire_body": {
+    "file": "parts/fire/body.png",
+    "id": 60
+  },
+  "parts_fire_head": {
+    "file": "parts/fire/head.png",
+    "id": 66
+  },
+  "parts_ghost_body": {
+    "file": "parts/ghost/body.png",
+    "id": 69
+  },
+  "parts_ghost_head": {
+    "file": "parts/ghost/head.png",
+    "id": 74
+  },
+  "parts_green_body": {
+    "file": "parts/green/body.png",
+    "id": 77
+  },
+  "parts_green_head": {
+    "file": "parts/green/head.png",
+    "id": 82
+  },
+  "parts_ice_body": {
+    "file": "parts/ice/body.png",
+    "id": 85
+  },
+  "parts_ice_head": {
+    "file": "parts/ice/head.png",
+    "id": 90
+  },
+  "parts_invisible_body": {
+    "file": "parts/invisible/body.png",
+    "id": 93
+  },
+  "parts_invisible_head": {
+    "file": "parts/invisible/head.png",
+    "id": 98
+  },
+  "parts_magma_body": {
+    "file": "parts/magma/body.png",
+    "id": 102
+  },
+  "parts_magma_head": {
+    "file": "parts/magma/head.png",
+    "id": 108
+  },
+  "parts_mecha_body": {
+    "file": "parts/mecha/body.png",
+    "id": 111
+  },
+  "parts_mecha_head": {
+    "file": "parts/mecha/head.png",
+    "id": 116
+  },
+  "parts_purple_body": {
+    "file": "parts/purple/body.png",
+    "id": 120
+  },
+  "parts_purple_head": {
+    "file": "parts/purple/head.png",
+    "id": 125
+  },
+  "parts_red_body": {
+    "file": "parts/red/body.png",
+    "id": 128
+  },
+  "parts_red_head": {
+    "file": "parts/red/head.png",
+    "id": 133
+  },
+  "parts_rock_body": {
+    "file": "parts/rock/body.png",
+    "id": 136
+  },
+  "parts_rock_head": {
+    "file": "parts/rock/head.png",
+    "id": 142
+  },
+  "parts_skeleton_body": {
+    "file": "parts/skeleton/body.png",
+    "id": 145
+  },
+  "parts_skeleton_head": {
+    "file": "parts/skeleton/head.png",
+    "id": 150
+  },
+  "parts_water_body": {
+    "file": "parts/water/body.png",
+    "id": 154
+  },
+  "parts_water_head": {
+    "file": "parts/water/head.png",
+    "id": 160
+  },
+  "parts_zombie_body": {
+    "file": "parts/zombie/body.png",
+    "id": 163
+  },
+  "parts_zombie_head": {
+    "file": "parts/zombie/head.png",
+    "id": 168
+  },
+  "parts_air_fangs": {
+    "file": "parts/air/fangs.png",
+    "id": 38
+  },
+  "parts_black_fangs": {
+    "file": "parts/black/fangs.png",
+    "id": 46
+  },
+  "parts_earth_cheek": {
+    "file": "parts/earth/cheek.png",
+    "id": 52
+  },
+  "parts_earth_fangs": {
+    "file": "parts/earth/fangs.png",
+    "id": 55
+  },
+  "parts_fire_cheek": {
+    "file": "parts/fire/cheek.png",
+    "id": 61
+  },
+  "parts_fire_fangs": {
+    "file": "parts/fire/fangs.png",
+    "id": 64
+  },
+  "parts_ghost_fangs": {
+    "file": "parts/ghost/fangs.png",
+    "id": 72
+  },
+  "parts_green_fangs": {
+    "file": "parts/green/fangs.png",
+    "id": 80
+  },
+  "parts_ice_fangs": {
+    "file": "parts/ice/fangs.png",
+    "id": 88
+  },
+  "parts_invisible_fangs": {
+    "file": "parts/invisible/fangs.png",
+    "id": 96
+  },
+  "parts_magma_cheek": {
+    "file": "parts/magma/cheek.png",
+    "id": 103
+  },
+  "parts_magma_fangs": {
+    "file": "parts/magma/fangs.png",
+    "id": 106
+  },
+  "parts_mecha_fangs": {
+    "file": "parts/mecha/fangs.png",
+    "id": 114
+  },
+  "parts_purple_fangs": {
+    "file": "parts/purple/fangs.png",
+    "id": 123
+  },
+  "parts_red_fangs": {
+    "file": "parts/red/fangs.png",
+    "id": 131
+  },
+  "parts_rock_cheek": {
+    "file": "parts/rock/cheek.png",
+    "id": 137
+  },
+  "parts_rock_fangs": {
+    "file": "parts/rock/fangs.png",
+    "id": 140
+  },
+  "parts_skeleton_fangs": {
+    "file": "parts/skeleton/fangs.png",
+    "id": 148
+  },
+  "parts_water_cheek": {
+    "file": "parts/water/cheek.png",
+    "id": 155
+  },
+  "parts_water_fangs": {
+    "file": "parts/water/fangs.png",
+    "id": 158
+  },
+  "parts_zombie_fangs": {
+    "file": "parts/zombie/fangs.png",
+    "id": 166
+  },
+  "parts_air_rattle": {
+    "file": "parts/air/rattle.png",
+    "id": 41
+  },
+  "parts_air_tongue": {
+    "file": "parts/air/tongue.png",
+    "id": 42
+  },
+  "parts_black_rattle": {
+    "file": "parts/black/rattle.png",
+    "id": 49
+  },
+  "parts_black_tongue": {
+    "file": "parts/black/tongue.png",
+    "id": 50
+  },
+  "parts_earth_rattle": {
+    "file": "parts/earth/rattle.png",
+    "id": 58
+  },
+  "parts_earth_tongue": {
+    "file": "parts/earth/tongue.png",
+    "id": 59
+  },
+  "parts_fire_rattle": {
+    "file": "parts/fire/rattle.png",
+    "id": 67
+  },
+  "parts_fire_tongue": {
+    "file": "parts/fire/tongue.png",
+    "id": 68
+  },
+  "parts_ghost_rattle": {
+    "file": "parts/ghost/rattle.png",
+    "id": 75
+  },
+  "parts_ghost_tongue": {
+    "file": "parts/ghost/tongue.png",
+    "id": 76
+  },
+  "parts_green_rattle": {
+    "file": "parts/green/rattle.png",
+    "id": 83
+  },
+  "parts_green_tongue": {
+    "file": "parts/green/tongue.png",
+    "id": 84
+  },
+  "parts_ice_rattle": {
+    "file": "parts/ice/rattle.png",
+    "id": 91
+  },
+  "parts_ice_tongue": {
+    "file": "parts/ice/tongue.png",
+    "id": 92
+  },
+  "parts_invisible_rattle": {
+    "file": "parts/invisible/rattle.png",
+    "id": 100
+  },
+  "parts_invisible_tongue": {
+    "file": "parts/invisible/tongue.png",
+    "id": 101
+  },
+  "parts_magma_rattle": {
+    "file": "parts/magma/rattle.png",
+    "id": 109
+  },
+  "parts_magma_tongue": {
+    "file": "parts/magma/tongue.png",
+    "id": 110
+  },
+  "parts_mecha_rattle": {
+    "file": "parts/mecha/rattle.png",
+    "id": 118
+  },
+  "parts_mecha_tongue": {
+    "file": "parts/mecha/tongue.png",
+    "id": 119
+  },
+  "parts_purple_rattle": {
+    "file": "parts/purple/rattle.png",
+    "id": 126
+  },
+  "parts_purple_tongue": {
+    "file": "parts/purple/tongue.png",
+    "id": 127
+  },
+  "parts_red_rattle": {
+    "file": "parts/red/rattle.png",
+    "id": 134
+  },
+  "parts_red_tongue": {
+    "file": "parts/red/tongue.png",
+    "id": 135
+  },
+  "parts_rock_rattle": {
+    "file": "parts/rock/rattle.png",
+    "id": 143
+  },
+  "parts_rock_tongue": {
+    "file": "parts/rock/tongue.png",
+    "id": 144
+  },
+  "parts_skeleton_rattle": {
+    "file": "parts/skeleton/rattle.png",
+    "id": 151
+  },
+  "parts_skeleton_tongue": {
+    "file": "parts/skeleton/tongue.png",
+    "id": 153
+  },
+  "parts_water_rattle": {
+    "file": "parts/water/rattle.png",
+    "id": 161
+  },
+  "parts_water_tongue": {
+    "file": "parts/water/tongue.png",
+    "id": 162
+  },
+  "parts_zombie_rattle": {
+    "file": "parts/zombie/rattle.png",
+    "id": 169
+  },
+  "parts_zombie_tongue": {
+    "file": "parts/zombie/tongue.png",
+    "id": 170
+  },
+  "parts_air_fingers": {
+    "file": "parts/air/fingers.png",
+    "id": 39
+  },
+  "parts_black_fingers": {
+    "file": "parts/black/fingers.png",
+    "id": 47
+  },
+  "parts_earth_fingers": {
+    "file": "parts/earth/fingers.png",
+    "id": 56
+  },
+  "parts_fire_fingers": {
+    "file": "parts/fire/fingers.png",
+    "id": 65
+  },
+  "parts_ghost_fingers": {
+    "file": "parts/ghost/fingers.png",
+    "id": 73
+  },
+  "parts_green_fingers": {
+    "file": "parts/green/fingers.png",
+    "id": 81
+  },
+  "parts_ice_fingers": {
+    "file": "parts/ice/fingers.png",
+    "id": 89
+  },
+  "parts_invisible_fingers": {
+    "file": "parts/invisible/fingers.png",
+    "id": 97
+  },
+  "parts_magma_fingers": {
+    "file": "parts/magma/fingers.png",
+    "id": 107
+  },
+  "parts_mecha_fingers": {
+    "file": "parts/mecha/fingers.png",
+    "id": 115
+  },
+  "parts_purple_fingers": {
+    "file": "parts/purple/fingers.png",
+    "id": 124
+  },
+  "parts_red_fingers": {
+    "file": "parts/red/fingers.png",
+    "id": 132
+  },
+  "parts_rock_fingers": {
+    "file": "parts/rock/fingers.png",
+    "id": 141
+  },
+  "parts_skeleton_fingers": {
+    "file": "parts/skeleton/fingers.png",
+    "id": 149
+  },
+  "parts_water_fingers": {
+    "file": "parts/water/fingers.png",
+    "id": 159
+  },
+  "parts_zombie_fingers": {
+    "file": "parts/zombie/fingers.png",
+    "id": 167
+  },
+  "parts_invisible_head_no_chest": {
+    "file": "parts/invisible/head_no_chest.png",
+    "id": 99
+  },
+  "parts_air_chest_no_fingers": {
+    "file": "parts/air/chest_no_fingers.png",
+    "id": 36
+  },
+  "parts_black_chest_no_fingers": {
+    "file": "parts/black/chest_no_fingers.png",
+    "id": 44
+  },
+  "parts_earth_chest_no_fingers": {
+    "file": "parts/earth/chest_no_fingers.png",
+    "id": 53
+  },
+  "parts_fire_chest_no_fingers": {
+    "file": "parts/fire/chest_no_fingers.png",
+    "id": 62
+  },
+  "parts_ghost_chest_no_fingers": {
+    "file": "parts/ghost/chest_no_fingers.png",
+    "id": 70
+  },
+  "parts_green_chest_no_fingers": {
+    "file": "parts/green/chest_no_fingers.png",
+    "id": 78
+  },
+  "parts_ice_chest_no_fingers": {
+    "file": "parts/ice/chest_no_fingers.png",
+    "id": 86
+  },
+  "parts_invisible_chest_no_fingers": {
+    "file": "parts/invisible/chest_no_fingers.png",
+    "id": 94
+  },
+  "parts_magma_chest_no_fingers": {
+    "file": "parts/magma/chest_no_fingers.png",
+    "id": 104
+  },
+  "parts_mecha_chest_no_fingers": {
+    "file": "parts/mecha/chest_no_fingers.png",
+    "id": 112
+  },
+  "parts_purple_chest_no_fingers": {
+    "file": "parts/purple/chest_no_fingers.png",
+    "id": 121
+  },
+  "parts_red_chest_no_fingers": {
+    "file": "parts/red/chest_no_fingers.png",
+    "id": 129
+  },
+  "parts_rock_chest_no_fingers": {
+    "file": "parts/rock/chest_no_fingers.png",
+    "id": 138
+  },
+  "parts_skeleton_chest_no_fingers": {
+    "file": "parts/skeleton/chest_no_fingers.png",
+    "id": 146
+  },
+  "parts_water_chest_no_fingers": {
+    "file": "parts/water/chest_no_fingers.png",
+    "id": 156
+  },
+  "parts_zombie_chest_no_fingers": {
+    "file": "parts/zombie/chest_no_fingers.png",
+    "id": 164
+  },
+  "gems_equipped_elements_air": {
+    "file": "gems/equipped/elements/air.png",
+    "id": 5
+  },
+  "gems_full_elements_air": {
+    "file": "gems/full/elements/air.png",
+    "id": 19
+  },
+  "gems_equipped_elements_fire": {
+    "file": "gems/equipped/elements/fire.png",
+    "id": 7
+  },
+  "gems_equipped_elements_none": {
+    "file": "gems/equipped/elements/none.png",
+    "id": 8
+  },
+  "gems_equipped_skills_tank": {
+    "file": "gems/equipped/skills/tank.png",
+    "id": 18
+  },
+  "gems_full_elements_fire": {
+    "file": "gems/full/elements/fire.png",
+    "id": 21
+  },
+  "gems_full_skills_tank": {
+    "file": "gems/full/skills/tank.png",
+    "id": 34
+  },
+  "gems_equipped_elements_earth": {
+    "file": "gems/equipped/elements/earth.png",
+    "id": 6
+  },
+  "gems_equipped_elements_water": {
+    "file": "gems/equipped/elements/water.png",
+    "id": 9
+  },
+  "gems_full_elements_earth": {
+    "file": "gems/full/elements/earth.png",
+    "id": 20
+  },
+  "gems_full_elements_water": {
+    "file": "gems/full/elements/water.png",
+    "id": 23
+  },
+  "gems_equipped_factions_desert": {
+    "file": "gems/equipped/factions/desert.png",
+    "id": 10
+  },
+  "gems_equipped_factions_forest": {
+    "file": "gems/equipped/factions/forest.png",
+    "id": 11
+  },
+  "gems_equipped_factions_valley": {
+    "file": "gems/equipped/factions/valley.png",
+    "id": 14
+  },
+  "gems_equipped_skills_combat": {
+    "file": "gems/equipped/skills/combat.png",
+    "id": 15
+  },
+  "gems_equipped_skills_healer": {
+    "file": "gems/equipped/skills/healer.png",
+    "id": 16
+  },
+  "gems_equipped_skills_sniper": {
+    "file": "gems/equipped/skills/sniper.png",
+    "id": 17
+  },
+  "gems_full_factions_desert": {
+    "file": "gems/full/factions/desert.png",
+    "id": 24
+  },
+  "gems_full_factions_forest": {
+    "file": "gems/full/factions/forest.png",
+    "id": 25
+  },
+  "gems_full_factions_valley": {
+    "file": "gems/full/factions/valley.png",
+    "id": 29
+  },
+  "gems_full_skills_combat": {
+    "file": "gems/full/skills/combat.png",
+    "id": 30
+  },
+  "gems_full_skills_healer": {
+    "file": "gems/full/skills/healer.png",
+    "id": 31
+  },
+  "gems_full_skills_sniper": {
+    "file": "gems/full/skills/sniper.png",
+    "id": 33
+  },
+  "gems_equipped_factions_islands": {
+    "file": "gems/equipped/factions/islands.png",
+    "id": 12
+  },
+  "gems_full_elements_missing": {
+    "file": "gems/full/elements/missing.png",
+    "id": 22
+  },
+  "gems_full_factions_islands": {
+    "file": "gems/full/factions/islands.png",
+    "id": 26
+  },
+  "gems_full_factions_missing": {
+    "file": "gems/full/factions/missing.png",
+    "id": 27
+  },
+  "gems_full_skills_missing": {
+    "file": "gems/full/skills/missing.png",
+    "id": 32
+  },
+  "gems_equipped_factions_mountain": {
+    "file": "gems/equipped/factions/mountain.png",
+    "id": 13
+  },
+  "gems_full_factions_mountain": {
+    "file": "gems/full/factions/mountain.png",
+    "id": 28
+  }
+}

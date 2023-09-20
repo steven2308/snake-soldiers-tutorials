@@ -10,7 +10,7 @@ dotenv.config();
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: '0.8.16',
+    version: '0.8.21',
     settings: {
       optimizer: {
         enabled: true,
@@ -19,30 +19,22 @@ const config: HardhatUserConfig = {
     },
   },
   networks: {
-    goerli: {
-      url: process.env.GOERLI_URL || '',
-      accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
-    },
     moonbaseAlpha: {
       url: 'https://rpc.testnet.moonbeam.network',
+      chainId: 1287, // (hex: 0x507)
       accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
-    },
-    moonriver: {
-      url: 'https://rpc.api.moonriver.moonbeam.network',
-      chainId: 1285, // (hex: 0x505),
-      accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      gasPrice: 1100000000,
     },
     moonbeam: {
-      url: 'https://rpc.api.moonbeam.network',
+      url: 'https://moonbeam.blastapi.io/f83b94ac-46b2-496d-89c2-5100f235a424',
       chainId: 1284, // (hex: 0x504),
       accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      gasPrice: 180000000000,
     },
   },
   etherscan: {
     apiKey: {
-      goerli: process.env.ETHERSCAN_API_KEY || '', // Goerli Etherscan API Key
       moonbaseAlpha: process.env.MOONBEAM_MOONSCAN_APIKEY || '', // Moonbeam Moonscan API Key
-      moonriver: process.env.MOONRIVER_MOONSCAN_APIKEY || '', // Moonriver Moonscan API Key
       moonbeam: process.env.MOONBEAM_MOONSCAN_APIKEY || '', // Moonbeam Moonscan API Key
     },
   },

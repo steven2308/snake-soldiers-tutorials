@@ -1,18 +1,17 @@
 // SPDX-License-Identifier: Apache-2.0
 
-pragma solidity ^0.8.16;
+pragma solidity ^0.8.21;
 
 import "./BaseGem.sol";
 
 contract SkillGem is BaseGem {
-    string private constant _POST_URL_PER_TYPE_COMBAT = "combat";
+    string private constant _POST_URL_PER_TYPE_COMBAT = "melee";
     string private constant _POST_URL_PER_TYPE_TANK = "tank";
     string private constant _POST_URL_PER_TYPE_HEAL = "healer";
     string private constant _POST_URL_PER_TYPE_SNIPER = "sniper";
 
     constructor(
         string memory collectionMetadata_,
-        string memory tokenURI_,
         address snakeSoldiers_,
         uint256 maxSupply_
     )
@@ -20,7 +19,6 @@ contract SkillGem is BaseGem {
             "Snake Soldiers Skill Gem",
             "SSSG",
             collectionMetadata_,
-            tokenURI_,
             snakeSoldiers_,
             maxSupply_
         )

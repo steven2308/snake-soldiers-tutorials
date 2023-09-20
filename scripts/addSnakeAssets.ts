@@ -1,5 +1,4 @@
 import * as CC from './catalogConstants';
-import { bn } from './constants';
 import { SnakeSoldier } from '../typechain-types';
 import { BigNumber } from 'ethers';
 
@@ -14,9 +13,9 @@ async function addFullAssetToSnake(
 ): Promise<void> {
   console.log('Configuring catalog.');
 
-  const all_parts = SLOT_PARTS.concat(fixed_parts);
+  const all_parts = SLOT_PARTS.concat(fixed_parts.map((part) => part.toNumber()));
 
-  const tx = await snakes.addEquippableAssetEntry(0, catalogAddress, metadataURI, all_parts);
+  const tx = await snakes.addEquippableAssetEntries(0, catalogAddress, [metadataURI], all_parts);
   // Wait for it to be mined
   await tx.wait();
 
@@ -28,35 +27,9 @@ async function addFullAssetToSnake(
     );
   } else {
     // Replace the egg asset with the revealed snake
-    await snakes.addAssetToToken(snakeId, assetId, activeAssets[0]);
+    await snakes.addAssetsToTokens([snakeId], [assetId], activeAssets[0]);
   }
   console.log(`Added asset for snake with ID ${snakeId}.`);
-}
-
-async function addFullAssetToAllSnakes(
-  snakes: SnakeSoldier,
-  baseMetadataUri: string,
-  catalogAddress: string,
-) {
-  await addFullAssetToSnake(snakes, `${baseMetadataUri}/1`, 1, catalogAddress, [
-    CC.HEAD_FIRE_ID,
-    CC.CHEST_FIRE_ID,
-    CC.BODY_FIRE_ID,
-    CC.EYES_FIRE_ID,
-    CC.MOUTH_FIRE_ID,
-    CC.FANGS_AIR_ID,
-    CC.TAIL_FIRE_ID,
-  ]);
-
-  await addFullAssetToSnake(snakes, `${baseMetadataUri}/2`, 2, catalogAddress, [
-    CC.HEAD_WATER_ID,
-    CC.CHEST_ICE_ID,
-    CC.BODY_SKELETTON_ID,
-    CC.EYES_WATER_ID,
-    CC.MOUTH_WATER_ID,
-    CC.FANGS_EARTH_ID,
-    CC.TAIL_WATER_ID,
-  ]);
 }
 
 export default addFullAssetToSnake;

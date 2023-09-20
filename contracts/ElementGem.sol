@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
-pragma solidity ^0.8.16;
+pragma solidity ^0.8.21;
 
 import "./BaseGem.sol";
 import "@rmrk-team/evm-contracts/contracts/RMRK/extension/soulbound/RMRKSoulbound.sol";
@@ -13,7 +13,6 @@ contract ElementGem is RMRKSoulbound, BaseGem {
 
     constructor(
         string memory collectionMetadata_,
-        string memory tokenURI_,
         address snakeSoldiers_,
         uint256 maxSupply_
     )
@@ -21,7 +20,6 @@ contract ElementGem is RMRKSoulbound, BaseGem {
             "Snake Soldiers Element Gem",
             "SSEG",
             collectionMetadata_,
-            tokenURI_,
             snakeSoldiers_,
             maxSupply_
         )
@@ -33,7 +31,7 @@ contract ElementGem is RMRKSoulbound, BaseGem {
         public
         view
         virtual
-        override(RMRKSoulbound, IERC165, RMRKEquippable)
+        override(RMRKAbstractEquippable, RMRKSoulbound)
         returns (bool)
     {
         return
@@ -45,8 +43,9 @@ contract ElementGem is RMRKSoulbound, BaseGem {
         address from,
         address to,
         uint256 tokenId
-    ) internal virtual override(RMRKCore, RMRKSoulbound) {
-        super._beforeTokenTransfer(from, to, tokenId);
+    ) internal virtual override(RMRKAbstractEquippable, RMRKSoulbound) {
+        RMRKAbstractEquippable._beforeTokenTransfer(from, to, tokenId);
+        RMRKSoulbound._beforeTokenTransfer(from, to, tokenId);
     }
 
     // Elements are assigned round robing style, it's an easy way to make sure
